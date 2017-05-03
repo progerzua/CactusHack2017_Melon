@@ -1,8 +1,13 @@
 # Melon
 
+Название команды: **Melon**
+
 ### Состав команды:
 **Артем Агарков**. Founder  
 Backend.  
+Контактные данные: 
+* VK: https://vk.com/id13709549 
+* Тел: +380953356619
 
 **Андрей Андрусишин**. Project Manager  
 Design, Frontend.  
