@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div align = "center">
+<form method=post action="">
+    {{ form.csrf_token }}
+    <p>
+        {{form.login(size=20)}}<br>
+		{{form.password(size=20)}}<br>
+    </p>
+    <p><input type="submit" value="LOGIN"></p>
+</form>
+</div>
+
+{{message}}
+{% endblock %}
