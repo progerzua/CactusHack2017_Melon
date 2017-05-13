@@ -31,9 +31,9 @@ class User(Base):
     __tablename__ = 'Users'
 
     id = Column(Integer, primary_key=True)
-    nickname = Column(String(32), unique=True)
+    nickname = Column(String(32), unique=False)
     password = Column(String(32))
-    email = Column(String(128), unique=True)
+    email = Column(String(128), unique=False)
     joined = Column(DateTime)
     project_id = Column(Integer, ForeignKey('Projects.id'))
     status = Column(String)
