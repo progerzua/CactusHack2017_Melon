@@ -1,7 +1,7 @@
 # app.py
 
 from flask import Flask
-from app.models import Base, User
+from app.models import Base
 from flask_sqlalchemy import SQLAlchemy
 
 app =  Flask(__name__)
