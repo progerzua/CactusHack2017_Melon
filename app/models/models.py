@@ -22,7 +22,7 @@ Base = declarative_base()
 class Team(Base):
     __tablename__ = 'Teams'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(32), unique=true)
     step_down = relationship("Projects", back_populates="step_up")
     def __init__(self, id, name):
         self.id = id
@@ -32,7 +32,7 @@ class Team(Base):
 class Project(Base):
     __tablename__ = 'Projects'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(32))
     team_id = Column(Integer, ForeignKey('Teams.id'))
     step_up = relationship("Teams", back_populates="step_down")
     step_down1 = relationship("Branches", back_populates="step_up")
@@ -45,9 +45,9 @@ class Project(Base):
 class User(Base):
     __tablename__ = 'Users'
     id = Column(Integer, primary_key=True)
-    nickname = Column(String)
-    password = Column(String)
-    email = Column(String)
+    nickname = Column(String(32), unique=true)
+    password = Column(String(32))
+    email = Column(String(128), unique=true)
     joined = Column(DataTime)
     project_id = Column(Integer, ForeignKey('Projects.id'))
     status = Column(String)
@@ -62,7 +62,7 @@ class User(Base):
 class Branch(Base):
     __tablename__ = 'Branches'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(32))
     project_id = Column(Integer, ForeignKey("Projects.id"))
     created = Column(DateTime)
     status = Column(Integer)
@@ -81,7 +81,7 @@ class Branch(Base):
 class Task(Base):
     __tablename__ = 'Tasks'
     id = Column(Integer, primary_key=True)
-    title = Column(String)
+    title = Column(String(32))
     created = Column(DateTime)
     modified = Column(DateTime)
     author_id = Column(Integer, ForeignKey("Users.id"))
