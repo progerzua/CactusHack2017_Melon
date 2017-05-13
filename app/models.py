@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
+
 class Team(Base):
 
     __tablename__ = 'Teams'
@@ -17,7 +18,7 @@ class Team(Base):
     email = Column(String(128))
     info = Column(String(1000))
 
-    projects = relationship("Project", backref="Team", lazy = "dynamic")
+    projects = relationship("Project", backref="team", lazy = "dynamic")
 
 
 class Project(Base):
@@ -28,7 +29,7 @@ class Project(Base):
     name = Column(String(32))
     team_id = Column(Integer, ForeignKey('Teams.id'))
 
-    tasks = relationship("Task", backref="Project", lazy = "dynamic")
+    tasks = relationship("Task", backref="project", lazy = "dynamic")
 
 
 class Task(Base):
@@ -42,8 +43,8 @@ class Task(Base):
     info = Column(String(5000)) #информация про задание
     status = Column(Integer)
     project_id = Column(Integer, ForeignKey("Projects.id"))
-    
-    authors = relationship("User", backref="Task", lazy="dynamic")
+
+    #authors = relationship("User", backref="task", lazy="dynamic")
 
 
 class User(Base):
@@ -55,9 +56,14 @@ class User(Base):
     password = Column(String(32))
     email = Column(String(128), unique=False)
     joined = Column(DateTime)
-    task_id = Column(Integer, ForeignKey('Tasks.id'))
+    #task_id = Column(Integer, ForeignKey('Tasks.id'))
+    task_id = Column(Integer)
     status = Column(String)
     rating = Column(Integer)   #!!!!!Скорость выполнения Пока так!!!!!
 
+class TaskConnection(Base):
+    '''
+    To connect User and Task
+    '''
 
-
+    __tablename__ = 'TaskConnection'

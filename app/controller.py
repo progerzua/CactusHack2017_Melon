@@ -10,14 +10,13 @@ from flask import Flask,session, request, flash, url_for, redirect, render_templ
 
 @app.route('/')
 def index():
-    team = Team(name="testeam")
-    db.session.add(team)
-    project = Project(name="testproject", Team = team)
-    db.session.add(project)
-    task = Task(title="testask", Project = project)
-    db.session.add(task)
-    user = User(nickname="testuser", Task = task)
+    someteam = Team(name="testeam")
+    db.session.add(someteam)
+    someproject = Project(name="testproject", team = someteam)
+    db.session.add(someproject)
+    sometask = Task(title="testask", project = someproject)
+    db.session.add(sometask)
+    user = User(nickname="testuser", task = sometask)
     db.session.add(user)
     db.session.commit()
-    #db.commit()
     return "Hello, World!"
