@@ -1,8 +1,12 @@
-from flask import Flask
-from datetime import timedelta
+# app.py
 
-app = Flask(__name__)
-app.config.from_object('config')
-app.permanent_session_lifetime = timedelta(hours=24)
+from flask import Flask
+from app.models import Base, User
+from flask_sqlalchemy import SQLAlchemy
+
+app =  Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db = SQLAlchemy(app)
+Base.metadata.create_all(bind=db.engine)
 
 from app import controller

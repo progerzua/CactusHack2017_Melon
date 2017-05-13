@@ -1,25 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat May 13 11:44:08 2017
+# models.py
 
-@author: Easy1_000
-"""
 from flask import Flask, Blueprint, render_template, abort
-#from flask import 
 from sqlalchemy import create_engine, Table, Column, Integer, String, DateTime, MetaData, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-#from sqlalchemy import 
-#from sql3 import 
-
-#!
-#engine = create_engine('sqlite:///:memory:', echo=True)
-#!
-#step_up child -> parent
-#step_down parent -> child
 
 Base = declarative_base()
+
 class Team(Base):
+
     __tablename__ = 'Teams'
     id = Column(Integer, primary_key=True)
     name = Column(String(32), unique=true)
@@ -27,9 +16,9 @@ class Team(Base):
     def __init__(self, id, name):
         self.id = id
         self.name = name
- #   def __repr__(self):
 
 class Project(Base):
+
     __tablename__ = 'Projects'
     id = Column(Integer, primary_key=True)
     name = Column(String(32))
@@ -40,9 +29,9 @@ class Project(Base):
     def __init__(self, id, name):
         self.id = id
         self.name = name
- #   def __repr__(self):
-     
+
 class User(Base):
+
     __tablename__ = 'Users'
     id = Column(Integer, primary_key=True)
     nickname = Column(String(32), unique=true)
@@ -57,9 +46,9 @@ class User(Base):
     def __init__(self, id, name):
         self.id = id
         self.name = name
- #   def __repr__(self):
-     
+
 class Branch(Base):
+
     __tablename__ = 'Branches'
     id = Column(Integer, primary_key=True)
     name = Column(String(32))
@@ -76,8 +65,7 @@ class Branch(Base):
         self.created = created
         self.status = status
         self.price_all = price_all
- #   def __repr__(self):
- #       return "<Branch('%s','%s', '%s', '%s')>" % (self.name, self.created, self.status, self.price_all)
+
 class Task(Base):
     __tablename__ = 'Tasks'
     id = Column(Integer, primary_key=True)
@@ -103,8 +91,7 @@ class Task(Base):
         self.status = status
         self.price = price
         self.branch_id = branch_id
-   # def __repr__(self):
-   #     return "<Task('%s','%s', '%s', '%s', '%s')>" % (self.title, self.created, self.modified, self.tags)
+
 #class File(Base):
 #    __tablename__ = 'Files'
 #    id = Column(Integer, primary_key=True)
@@ -119,10 +106,8 @@ class Task(Base):
 #        self.name = name
 #        self.created = created
 #        self.description = description
-#        self.author_id = author_id 
+#        self.author_id = author_id
 #        self.path = path
 #        self.task_id = task_id
    # def __repr__(self):
    #     return "<Task('%s','%s', '%s', '%s', '%s')>" % (self.title, self.created, self.modified, self.tags)
-
-
