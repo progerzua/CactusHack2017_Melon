@@ -9,7 +9,4 @@ app =  Flask(__name__, static_url_path='/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 Base.metadata.create_all(bind=db.engine)
-login_manager = LoginManager()
-login_manager.setup_app(app)
-
 from app import controller
