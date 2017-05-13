@@ -12,8 +12,7 @@ class Team(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(32), unique=True)
-
-    step_down = relationship("Projects", back_populates="step_up")
+    projects = relationship("Project", backref="team", lazy = "dynamic")
 
     def __init__(self, name):
         self.name = name
@@ -26,10 +25,8 @@ class Project(Base):
     name = Column(String(32))
     team_id = Column(Integer, ForeignKey('Teams.id'))
 
-    step_up = relationship("Teams", back_populates="step_down")
-
-    step_down1 = relationship("Branches", back_populates="step_up")
-    step_down2 = relationship("Users", back_populates="step_up")
+    #step_down1 = relationship("Branches", back_populates="step_up")
+    #step_down2 = relationship("Users", back_populates="step_up")
 
     def __init__(self, name):
         self.name = name

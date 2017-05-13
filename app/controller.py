@@ -5,5 +5,7 @@ from app.models import User, Team, Project, Branch, Task
 @app.route('/')
 def index():
     team = Team("teamname")
-    project = Project("projectname")
+    db.session.add(team)
+    project = Project("projectname", step_up = team)
+    db.commit()
     return "Hello, World!"
