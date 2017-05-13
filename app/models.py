@@ -1,5 +1,4 @@
 # models.py
-
 from flask import Flask, Blueprint, render_template, abort
 from sqlalchemy import create_engine, Table, Column, Integer, String, DateTime, MetaData, ForeignKey
 from sqlalchemy.orm import relationship
@@ -11,7 +10,7 @@ class Team(Base):
 
     __tablename__ = 'Teams'
     id = Column(Integer, primary_key=True)
-    name = Column(String(32), unique=true)
+    name = Column(String(32), unique=True)
     step_down = relationship("Projects", back_populates="step_up")
     def __init__(self, id, name):
         self.id = id
@@ -34,10 +33,10 @@ class User(Base):
 
     __tablename__ = 'Users'
     id = Column(Integer, primary_key=True)
-    nickname = Column(String(32), unique=true)
+    nickname = Column(String(32), unique=True)
     password = Column(String(32))
-    email = Column(String(128), unique=true)
-    joined = Column(DataTime)
+    email = Column(String(128), unique=True)
+    joined = Column(DateTime)
     project_id = Column(Integer, ForeignKey('Projects.id'))
     status = Column(String)
     rating = Column(Integer)
