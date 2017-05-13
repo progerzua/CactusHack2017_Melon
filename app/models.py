@@ -11,7 +11,7 @@ class Team(Base):
     __tablename__ = 'Teams'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(32), unique=True)
+    name = Column(String(32))
 
     projects = relationship("Project", backref="team", lazy = "dynamic")
 
