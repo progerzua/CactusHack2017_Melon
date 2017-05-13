@@ -52,7 +52,7 @@ class User(Base):
     __tablename__ = 'Users'
 
     id = Column(Integer, primary_key=True)
-    nickname = Column(String(32), unique=False)
+    nickname = Column(String(32), unique=True)
     password = Column(String(32))
     email = Column(String(128), unique=False)
     joined = Column(DateTime)
@@ -60,10 +60,3 @@ class User(Base):
     task_id = Column(Integer)
     status = Column(String)
     rating = Column(Integer)   #!!!!!Скорость выполнения Пока так!!!!!
-
-class TaskConnection(Base):
-    '''
-    To connect User and Task
-    '''
-
-    __tablename__ = 'TaskConnection'
