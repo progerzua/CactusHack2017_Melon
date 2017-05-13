@@ -8,6 +8,7 @@ def index():
     db.session.add(o_team)
     db.session.commit()
     project = Project(name="projectname", team = o_team)
+    
     db.session.add(project)
     db.session.commit()
     #db.commit()
