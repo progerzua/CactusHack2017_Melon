@@ -53,6 +53,7 @@ class User(Base):
     status = Column(String)
     rating = Column(Integer)
     step_up = relationship("Projects", back_populates="step_down2")
+    step_down = relationship("Tasks", back_populates="step_up2")
     def __init__(self, id, name):
         self.id = id
         self.name = name
@@ -67,7 +68,7 @@ class Branch(Base):
     status = Column(Integer)
     price_all = Column(Integer)
     step_up = relationship("Projects", back_populates="step_down1")
-    step_down = relationship("Tasks", back_populates="step_up")
+    step_down = relationship("Tasks", back_populates="step_up1")
     def __init__(self, id, name, project_id, created, status, price_all):
         self.id = id
         self.name = name
@@ -83,13 +84,14 @@ class Task(Base):
     title = Column(String)
     created = Column(DateTime)
     modified = Column(DateTime)
-    author_id = Column(Integer)
+    author_id = Column(Integer, ForeignKey("Users.id"))
     executor_id = Column(Integer)
     tags = Column(String)
     status = Column(Integer)
     price = Column(Integer)
     branch_id = Column(Integer, ForeignKey("Branches.id"))
-    step_up = relationship("Branches", back_populates="step_down")
+    step_up1 = relationship("Branches", back_populates="step_down")
+    step_up2 = relationship("Users", back_populates="step_down")
     def __init__(self, id, title, created, modified, author_id, executor_id, tags, status, price, branch_id):
         self.id = id
         self.title = title
