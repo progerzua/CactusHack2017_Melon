@@ -4,12 +4,13 @@ from app.models import Team, Project
 
 @app.route('/')
 def index():
-    o_team = Team(name="teamname4")
+    o_team = Team(name="teamname8")
     db.session.add(o_team)
     db.session.commit()
+
     project = Project(name="projectname", team = o_team)
-    
+
     db.session.add(project)
     db.session.commit()
-    #db.commit()
+
     return "Hello, World!"
