@@ -2,7 +2,7 @@ body, html{
     height: 100%;
     width: 100%;
  	background-repeat: no-repeat;
- 	background: url(/images/background.png);
+ 	background: url(/static/images/background.png);
  	font-family: 'Oxygen', sans-serif;
 }
 .nav-side-menu {

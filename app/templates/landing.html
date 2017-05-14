@@ -50,15 +50,14 @@
 
             <a id="signinbut" href="#" class="btn btn-dark btn-lg">Sign in</a>
             <br>
-            <a id="signuphhbut" href="#" class="btn btn-dark btn-lg sign">Sign up as HeadHunter</a>
-            <a id="signupusbut" href="#" class="btn btn-dark btn-lg sign">Sign up as User</a>
+            <a id="signupusbut" href="#" class="btn btn-dark btn-lg sign">Sign up</a>
 
             <!-- The Modal -->
             <div id="inmodal" class="modal">
     			<div class="row main">
     				<div class="main-login main-center">
                         <span id="closein" class="close">&times;</span>
-    					<form class="form-horizontal" method="post" action="#">
+    					<form class="form-horizontal" method="POST" action="/login">
 
     						<div class="form-group">
     							<label for="Username" class="cols-sm-2 control-label">Username</label>
@@ -89,73 +88,61 @@
     			</div>
             </div>
 
-            <!-- The Modal -->
-            <div id="uphhmodal" class="modal">
-              <!-- Modal content -->
-      			<div class="row main">
-                <div class="main-login main-center">
-                    <span id="closeuphh" class="close">&times;</span>
-                    <form class="form-horizontal" method="post" action="#">
-                        <div class="form-group">
-                            <label for="Name of your company" class="cols-sm-2 control-label">Name of your company</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-group fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Name of your company"/>
-                                </div>
-                            </div>
-                        </div>
+            <div id="upusmodal" class="modal">
+                <div class="row main">
+    				<div class="main-login main-center">
+                        <span id="closeupus" class="close">&times;</span>
+    					<form class="form-horizontal" method="post" action="#">
 
-                        <div class="form-group">
-                            <label for="Username" class="cols-sm-2 control-label">Username</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-                                </div>
-                            </div>
-                        </div>
+    						<div class="form-group">
+    							<label for="name" class="cols-sm-2 control-label">Username</label>
+    							<div class="cols-sm-10">
+    								<div class="input-group">
+    									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+    									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+    								</div>
+    							</div>
+    						</div>
 
-                        <div class="form-group">
-                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                                </div>
-                            </div>
-                        </div>
+    						<div class="form-group">
+    							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+    							<div class="cols-sm-10">
+    								<div class="input-group">
+    									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+    									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+    								</div>
+    							</div>
+    						</div>
 
 
 
-                        <div class="form-group">
-                            <label for="password" class="cols-sm-2 control-label">Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-                                </div>
-                            </div>
-                        </div>
+    						<div class="form-group">
+    							<label for="password" class="cols-sm-2 control-label">Password</label>
+    							<div class="cols-sm-10">
+    								<div class="input-group">
+    									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+    									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+    								</div>
+    							</div>
+    						</div>
 
-                        <div class="form-group">
-                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-                                </div>
-                            </div>
-                        </div>
+    						<div class="form-group">
+    							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+    							<div class="cols-sm-10">
+    								<div class="input-group">
+    									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+    									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+    								</div>
+    							</div>
+    						</div>
 
-                        <div class="form-group ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                        </div>
-                    </form>
-                </div>
+    						<div class="form-group ">
+    							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+    						</div>
+    					</form>
+    				</div>
+    			</div>
             </div>
-
-
 
             </div>
 
@@ -177,18 +164,17 @@
 
     //========================
 
-    var modaluphh = document.getElementById('uphhmodal');
-    var btnuphh = document.getElementById("signuphhbut");
-    var spanuphh = document.getElementById("closeuphh");
+    var modalupus = document.getElementById('upusmodal');
+    var btnupus = document.getElementById("signupusbut");
+    var spanupus = document.getElementById("closeupus");
 
-    btnuphh.onclick = function() {
-        modaluphh.style.display = "block";
+    btnupus.onclick = function() {
+        modalupus.style.display = "block";
     }
 
-    spanuphh.onclick = function() {
-        modaluphh.style.display = "none";
+    spanupus.onclick = function() {
+        modalupus.style.display = "none";
     }
-
     //=========================
 </script>
 </body>
