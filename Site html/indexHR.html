@@ -15,10 +15,11 @@
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>    
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
+        <link href="/assets/css/stylish-portfolio.css" rel="stylesheet">
 		<title>User</title>
 	</head>
     
-    
+   <body> 
     
     <!-- SIDEBAR -->
     
@@ -116,7 +117,7 @@
     <!-- Main Content -->
     <div class="container-fluid">
         <div class="side-body">
-           <h1> Projects &nbsp;<a href="#">+</a> </h1>
+           <h1> Projects &nbsp;<a href="#" id="signupusbut">+</a> </h1>
             <div class="project">
             
             </div>
@@ -136,3 +137,83 @@
         </div>
     </div>
 </div>
+
+<div id="upusmodal" class="modal">
+                <div class="row main">
+                    <div class="main-login main-center">
+                        <span id="closeupus" class="close">&times;</span>
+                        <form class="form-horizontal" method="POST" action="/registration">
+
+                            <div class="form-group">
+                                <label for="name" class="cols-sm-2 control-label">Username</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="cols-sm-2 control-label">Password</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="pass" id="password"  placeholder="Enter your Password"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="cpass" id="confirm"  placeholder="Confirm your Password"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <input type="radio" name="status" value="Head"> Head <br>
+                                        <input type="radio" name="status" value="Slave"> Slave<br>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            
+<script type="text/javascript">
+var modalupus = document.getElementById('upusmodal');
+    var btnupus = document.getElementById("signupusbut");
+    var spanupus = document.getElementById("closeupus");
+
+    btnupus.onclick = function() {
+        modalupus.style.display = "block";
+    }
+
+    spanupus.onclick = function() {
+        modalupus.style.display = "none";
+    }
+</script>
+</body>
