@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort
 from app.forms import LoginForm
 from sqlalchemy.sql import text
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 @app.route('/')
 def index():
@@ -56,8 +57,8 @@ def login():
                     session["id"] = acc.id
                     session["status"] = acc.status
                     if acc.status == "Head":
-                        result = db.session.query(Team).filter_by(acc_id='1').all()
-                        session["company_name"] = str(result)
+                        #result = db.session.query(Team).filter_by(acc_id='1').all()
+                        session["company_name"] = "Melon"
                         return "Head"
                     else:
                         return "Slave"
@@ -112,10 +113,16 @@ def logout():
 @app.route('/hh_home')
 def hh_home():
     if ('status' in session) and (session['status'] == 'Head'):
-        return render_template('indexHR.html')
+        return render_template('indexHR.html', company_name=session["company_name"])
     else:
         return redirect('/')
 
 @app.route('/test')
 def test():
-    return str(session["company_name"]) + " | " + str(session["id"])
+    Session = scoped_session(sessionmaker(bind=db.engine))
+    s = Session()
+    tmp = ""
+    result = s.execute("SELECT * FROM Users")
+    for i in result:
+        tmp = i
+    return str(tmp)
