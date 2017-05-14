@@ -14,6 +14,7 @@ from app.forms import LoginForm
 def index():
     return render_template('landing.html')
 
+
 @app.route('/registration', methods=(['GET','POST']))
 def registration():
     if request.method == 'POST':
@@ -99,3 +100,7 @@ def logout():
     session.pop('username', None)
     session.pop('id', None)
     return redirect('/')
+
+@app.route('/hh_home')
+def hh_home():
+    return render_template('indexHR.html')
