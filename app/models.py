@@ -74,4 +74,3 @@ class User(Base):
     #task_id = Column(Integer)
     #status = Column(String)
     rating = Column(Integer)   #!!!!!Скорость выполнения Пока так!!!!!
-
