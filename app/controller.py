@@ -35,18 +35,6 @@ def registration():
             return "Registration Succesfull"
         else:
             return "Password doesnt match"
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
-        #for i in session.query(Task):
-        #   query.append((i.title, i.info, i.expected))
-        #return redirect(url_for('index.html'))
-
-
-        #return title_task
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
     else:
         mess = "Bad request"
         return render_template('registration.html')
@@ -69,44 +57,8 @@ def login():
                     return "Wrong password"
             else:
                 return "Account doesn`t exist"
-    # else :
-    #     login = request.form['login']
-    #     password = request.form['password']
-    #
-    #     acc = db.session.query(Acc).filter_by(nickname=login).first()
-    #     if acc:
-    #         if acc.password == password:
-    #             return "everything okay"
-    #         else:
-    #             return "Wrong password"
-    #     else:
-    #         return "Account doesn`t exist"
 
-#GET, RABOTAET
-#@app.route('/create_task',methods=(['GET', 'POST']))
-#def create_task():
-#    if request.method == 'GET':
-#        title_task = request.args.get('title')
-#        info_task = request.args.get('info')
-#        expected_task = request.args.get('expected_time')
-#        post_entry = Task(title=title_task, info=info_task)
-#        db.session.add(post_entry)
-#        db.session.commit()
-#        #db.session.query(Task).append(title=title_task)
-#        #db.session.query(Task).append(info=info_task)
-#        #db.session.query(Task).append(expected=expected_task)
-#        #for i in session.query(Task):
-#        #   query.append((i.title, i.info, i.expected))
-#        #return redirect(url_for('index.html'))
-#        return title_task + " " + info_task + " " + expected_task
-#        #db.session.query(Task).append(title=title_task)
-#        #db.session.query(Task).append(info=info_task)
-#        #db.session.query(Task).append(expected=expected_task)
-#        return title_task + " " + info_task + " " + expected_task
-#    else:
-#        mess = "Bad request"
-#        return render_template('create_task.html')
-#        #return "Bad request"
+
 
 @app.route('/create_task',methods=(['GET', 'POST']))
 def create_task():
@@ -120,17 +72,9 @@ def create_task():
         post_entry = Task(title=title_task, info=info_task, expected=expected)
         db.session.add(post_entry)
         db.session.commit()
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
-        #for i in session.query(Task):
-        #   query.append((i.title, i.info, i.expected))
-        #return redirect(url_for('index.html'))
+
         return title_task + " " + info_task + " " + expected_task
-        #return title_task
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
+
     else:
         mess = "Bad request"
         return render_template('create_task.html')
@@ -142,17 +86,9 @@ def create_project():
         post_entry = Project(name=name_project)
         db.session.add(post_entry)
         db.session.commit()
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
-        #for i in session.query(Task):
-        #   query.append((i.title, i.info, i.expected))
-        #return redirect(url_for('index.html'))
+
         return name_project
-        #return title_task
-        #db.session.query(Task).append(title=title_task)
-        #db.session.query(Task).append(info=info_task)
-        #db.session.query(Task).append(expected=expected_task)
+
     else:
         mess = "Bad request"
         return render_template('create_project.html')
