@@ -15,23 +15,17 @@ def index():
 
 @app.route('/login', methods=(['POST']))
 def login():
-    form = LoginForm()
-    # if request.method == "GET":
-    #     return render_template('login.html',form = form)
-    # else:
-    #     mess = ""
-    #     if form.validate_on_submit():
-    #         user = db.session.query(User).filter_by(nickname=form.login.data).first()
-    #         if user:
-    #             if user.password == form.password.data:
-    #                 return redirect(url_for('index'))
-    #             else :
-    #                 mess = "Wrong password"
-    #         else :
-    #             mess = "User doesn`t exist"
-    #     else:
-    #         mess = "Validation error"
-    #     return render_template('login.html',form = form, message = mess)
+    login = request.form['login']
+    password = request.form['password']
+
+    acc = db.session.query(Acc).filter_by(nickname=login).first()
+    if acc:
+        if acc.password == password:
+            return "everything okay"
+        else:
+            return "Wrong password"
+    else:
+        return "Account doesn`t exist"
 
 #GET, RABOTAET
 #@app.route('/create_task',methods=(['GET', 'POST']))

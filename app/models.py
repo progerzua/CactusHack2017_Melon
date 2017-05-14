@@ -10,7 +10,7 @@ class Acc(Base):
 
     __tablename__ = 'Accs'
     id = Column(Integer, primary_key=True)
-    nickname = Column(String(32), unique=False)
+    nickname = Column(String(32), unique=True)
     password = Column(String(32))
     email = Column(String(128), unique=False)
     joined = Column(DateTime)
