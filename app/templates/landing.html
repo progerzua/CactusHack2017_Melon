@@ -202,10 +202,12 @@
                data: { nickname: $("#form-login input")[0].value , password: $("#form-login input")[1].value, ajax: true },
                success: function(data)
                {
-                   if (data !== "Ok"){
-                       document.getElementById("loginerr").innerHTML = data ;
+                    if(data == "Head") {
+                       window.location.href = "/hh_home";
+                   } else if (data == "Slave"){
+                       window.location.href = "/user_home";
                    } else {
-                       window.location.href = "/home";
+                       document.getElementById("loginerr").innerHTML = data ;    
                    }
                }
              });

@@ -53,7 +53,11 @@ def login():
                 if acc.password == password:
                     session["username"] = login
                     session["id"] = acc.id
-                    return "Ok"
+                    session["status"] = acc.status
+                    if acc.status == "Head":
+                        return "Head"
+                    else:
+                        return "Slave"
                 else:
                     return "Wrong password"
             else:
@@ -80,6 +84,7 @@ def create_task():
         mess = "Bad request"
         return render_template('create_task.html')
         #return "Bad request"
+
 @app.route('/create_project',methods=(['GET', 'POST']))
 def create_project():
     if request.method == 'POST':
@@ -87,7 +92,6 @@ def create_project():
         post_entry = Project(name=name_project)
         db.session.add(post_entry)
         db.session.commit()
-
         return name_project
 
     else:
@@ -99,8 +103,12 @@ def create_project():
 def logout():
     session.pop('username', None)
     session.pop('id', None)
+    session.pop('status', None)
     return redirect('/')
 
 @app.route('/hh_home')
 def hh_home():
-    return render_template('indexHR.html')
+    if ('status' in session) and (session['status'] == 'Head'):
+        return render_template('indexHR.html')
+    else:
+        return redirect('/')

@@ -14,9 +14,6 @@ class Acc(Base):
     password = Column(String(32))
     email = Column(String(128), unique=False)
     joined = Column(DateTime)
-    #task_id = Column(Integer, ForeignKey('Tasks.id'))
-    #task_id = relationship("Task",secondary=association_table, back_populates="authors", lazy="dynamic")
-    #task_id = Column(Integer)
     status = Column(String) # free or head
     teams = relationship("Team", backref= "acc", lazy= "dynamic")
     users = relationship("User", backref= "acc", lazy= "dynamic")
