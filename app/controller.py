@@ -23,19 +23,19 @@ def registration():
     if request.method == 'POST':
         try:
             if request.form['name'] == db.session.query(Acc).filter_by(nickname=request.form['name']).first().nickname:
-                return "Nickname allready used" 
+                return "Nickname allready used"
             else:
                 None
         except AttributeError:
             nickname=request.form['name']
-        try:     
+        try:
             if request.form['email'] == db.session.query(Acc).filter_by(email=request.form['email']).first().email:
-                return "Email allready used" 
+                return "Email allready used"
             else:
                 None
-        except AttributeError:               
-            email=request.form['email'] 
-            
+        except AttributeError:
+            email=request.form['email']
+
         passw = request.form['pass']
         cpassw = request.form['cpass']
         email = request.form['email']
@@ -157,3 +157,7 @@ def test():
     for i in result:
         tmp = i
     return str(tmp)
+
+@app.route('/user_home')
+def user_home():
+    return render_template('indexUsr.html')
