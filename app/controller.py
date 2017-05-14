@@ -14,7 +14,7 @@ from app.forms import LoginForm
 def index():
     return render_template('landing.html')
 
-@app.route('/registration', methods=(['GET', 'POST']))
+@app.route('/registration', methods=(['GET','POST']))
 def registration():
     if request.method == 'POST':
         nickname = request.form['name']
@@ -27,28 +27,30 @@ def registration():
             post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)        
             db.session.add(post_entry)
             db.session.commit()
+            return "Registration Succesfull"
+        else:
+            return "Password doesnt match"
         #db.session.query(Task).append(title=title_task)
         #db.session.query(Task).append(info=info_task)
         #db.session.query(Task).append(expected=expected_task)
         #for i in session.query(Task):
         #   query.append((i.title, i.info, i.expected))
         #return redirect(url_for('index.html'))
-            return "Registration Succesfull"
-        else:
-            return "Password doesnt match"
+            
+        
         #return title_task
         #db.session.query(Task).append(title=title_task)
         #db.session.query(Task).append(info=info_task)
         #db.session.query(Task).append(expected=expected_task)
     else:
         mess = "Bad request"
-        return render_template('registration.html')
+        return render_template('/registration')
         #return "Bad request"
 
 @app.route('/login', methods=(['GET', 'POST']))
 def login():
-    login = request.form['login']
-    password = request.form['password']
+#    login = request.form['login']
+#    password = request.form['password']
 
     acc = db.session.query(Acc).filter_by(nickname=login).first()
     if acc:
