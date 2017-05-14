@@ -362,11 +362,11 @@
 
 .main-login {
     max-width: 250px;
-    margin-left: 40px;
+    margin-left: 40%;
+    margin-top: 5%;
 }
-div.project {
-  text-align: center;
-}
+
+
 div.project form {
   padding: 0; 
 }

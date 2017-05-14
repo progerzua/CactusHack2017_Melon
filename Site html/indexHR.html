@@ -10,12 +10,13 @@
 
 		<!-- Website Font style -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="js/bootstrap.min.js" type="text/js">
 		
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>    
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-        <link href="/assets/css/stylish-portfolio.css" rel="stylesheet">
+        <link href="bootstrap/css/stylish-portfolio.css" rel="stylesheet">
 		<title>User</title>
 	</head>
     
@@ -45,7 +46,8 @@
             <!-- Brand -->
             <div class="brand-name-wrapper">
                 <a class="navbar-brand" href="#">
-                    Brand
+                    Your name<br>
+                    Your company
                 </a>
             </div>
 
@@ -68,15 +70,12 @@
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
 
-            <li><a href="#"><span class="glyphicon glyphicon-send"></span> Link</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-send"></span> Projects</a></li>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span>Tasks</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span>Logout</a></li>
 
             <!-- Dropdown-->
-            <li class="panel panel-default" id="dropdown">
-                <a data-toggle="collapse" href="#dropdown-lvl1">
-                    <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-                </a>
+            
 
                 <!-- Dropdown level 1 -->
                 <div id="dropdown-lvl1" class="panel-collapse collapse">
@@ -106,7 +105,7 @@
                 </div>
             </li>
 
-            <li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+            
 
         </ul>
     </div><!-- /.navbar-collapse -->
@@ -145,57 +144,46 @@
                         <form class="form-horizontal" method="POST" action="/registration">
 
                             <div class="form-group">
-                                <label for="name" class="cols-sm-2 control-label">Username</label>
+                                <label for="name" class="cols-sm-2 control-label">Project name</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter project name"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                                    </div>
+                                <label for="email" class="cols-lg-2 control-label">Select category</label>
+                                <br>
+                                <div class="btn-group">
+                                <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Category <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
                                 </div>
-                            </div>
 
                             <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">Password</label>
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="pass" id="password"  placeholder="Enter your Password"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                <label for="password" class="cols-sm-2 control-label">Summary</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="cpass" id="confirm"  placeholder="Confirm your Password"/>
+                                        <textarea type="text" rows="4" cols="100" class="form-control" name="pass" id="password"  placeholder="Write summary about your project"></textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-                                        <input type="radio" name="status" value="Head"> Head <br>
-                                        <input type="radio" name="status" value="Slave"> Slave<br>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
 
                             <div class="form-group ">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -203,6 +191,7 @@
             </div>
 
             
+
 <script type="text/javascript">
 var modalupus = document.getElementById('upusmodal');
     var btnupus = document.getElementById("signupusbut");
