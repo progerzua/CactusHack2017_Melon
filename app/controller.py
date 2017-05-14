@@ -25,7 +25,12 @@ def registration():
         now = datetime.now()
         if passw == cpassw:
             post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)        
+            if status == "Head":
+                post_pod=Team(name=nickname,joined=now,acc=post_entry)
+            else:
+                post_pod=User(acc=post_entry,rating=0)
             db.session.add(post_entry)
+            db.session.add(post_pod)
             db.session.commit()
             return "Registration Succesfull"
         else:
@@ -44,13 +49,13 @@ def registration():
         #db.session.query(Task).append(expected=expected_task)
     else:
         mess = "Bad request"
-        return render_template('/registration')
+        return render_template('registration.html')
         #return "Bad request"
 
 @app.route('/login', methods=(['GET', 'POST']))
 def login():
-#    login = request.form['login']
-#    password = request.form['password']
+    login = request.form['login']
+    password = request.form['password']
 
     acc = db.session.query(Acc).filter_by(nickname=login).first()
     if acc:
