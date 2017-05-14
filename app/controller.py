@@ -161,3 +161,7 @@ def test():
 @app.route('/user_home')
 def user_home():
     return render_template('indexUsr.html')
+
+@app.route('/search_task')
+def search_task():
+    return render_template("SearchTask.html")
