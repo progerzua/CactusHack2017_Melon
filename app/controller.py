@@ -17,14 +17,19 @@ def index():
 @app.route('/registration', methods=(['GET','POST']))
 def registration():
     if request.method == 'POST':
-        if request.form['name'] == db.session.query(Acc).filter_by(nickname=request.form['name']).first().nickname:
-            return "Nickname allready used" 
-        else:
+        try:
+            if request.form['name'] == db.session.query(Acc).filter_by(nickname=request.form['name']).first().nickname:
+                return "Nickname allready used" 
+            else:
+                None
+        except AttributeError:
             nickname=request.form['name']
-            
-        if request.form['email'] == db.session.query(Acc).filter_by(email=request.form['email']).first().email:
-            return "Email allready used" 
-        else:
+        try:     
+            if request.form['email'] == db.session.query(Acc).filter_by(email=request.form['email']).first().email:
+                return "Email allready used" 
+            else:
+                None
+        except AttributeError:               
             email=request.form['email'] 
             
         passw = request.form['pass']
@@ -36,6 +41,8 @@ def registration():
             post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)
             if status == "Head":
                 post_pod=Team(name=nickname,joined=now,acc=post_entry)
+            elif status == None:
+                return "You must choose category"
             else:
                 post_pod=User(acc=post_entry,rating=0)
             db.session.add(post_entry)
