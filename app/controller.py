@@ -9,6 +9,7 @@ from app.models import Acc, Team, Project, User, Task, association_table
 from sqlalchemy.orm import sessionmaker
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort
 from app.forms import LoginForm
+from sqlalchemy.sql import text
 
 @app.route('/')
 def index():
@@ -55,6 +56,8 @@ def login():
                     session["id"] = acc.id
                     session["status"] = acc.status
                     if acc.status == "Head":
+                        result = db.session.query(Team).filter_by(acc_id='1').all()
+                        session["company_name"] = str(result)
                         return "Head"
                     else:
                         return "Slave"
@@ -112,3 +115,7 @@ def hh_home():
         return render_template('indexHR.html')
     else:
         return redirect('/')
+
+@app.route('/test')
+def test():
+    return str(session["company_name"]) + " | " + str(session["id"])

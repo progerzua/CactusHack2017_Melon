@@ -18,6 +18,7 @@ class Acc(Base):
     teams = relationship("Team", backref= "acc", lazy= "dynamic")
     users = relationship("User", backref= "acc", lazy= "dynamic")
 
+# Это компания
 class Team(Base):
 
     __tablename__ = 'Teams'
