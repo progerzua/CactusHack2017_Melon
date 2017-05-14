@@ -12,7 +12,7 @@ class Acc(Base):
     id = Column(Integer, primary_key=True)
     nickname = Column(String(32), unique=True)
     password = Column(String(32))
-    email = Column(String(128), unique=False)
+    email = Column(String(128), unique=True)
     joined = Column(DateTime)
     #task_id = Column(Integer, ForeignKey('Tasks.id'))
     #task_id = relationship("Task",secondary=association_table, back_populates="authors", lazy="dynamic")
