@@ -17,6 +17,7 @@
     <!-- Custom CSS -->
     <link href="/static/css/stylish-portfolio.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Custom Fonts -->
     <link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -48,6 +49,7 @@
         <div class="text-vertical-center">
             <h1>MELON</h1>
 
+            {% if not 'username' in session: %}
             <a id="signinbut" href="#" class="btn btn-dark btn-lg">Sign in</a>
             <br>
             <a id="signupusbut" href="#" class="btn btn-dark btn-lg sign">Sign up</a>
@@ -57,7 +59,7 @@
     			<div class="row main">
     				<div class="main-login main-center">
                         <span id="closein" class="close">&times;</span>
-    					<form class="form-horizontal" method="POST" action="/login">
+    					<form id="form-login" class="form-horizontal" method="POST" action="/login">
 
     						<div class="form-group">
     							<label for="Username" class="cols-sm-2 control-label">Username</label>
@@ -78,7 +80,7 @@
     								</div>
     							</div>
     						</div>
-
+                            <p id="loginerr" style="color:red;"></p>
     						<div class="form-group ">
     							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
     						</div>
@@ -92,7 +94,7 @@
                 <div class="row main">
     				<div class="main-login main-center">
                         <span id="closeupus" class="close">&times;</span>
-    					<form class="form-horizontal" method="POST" action="/registration">
+    					<form id="form-reg" class="form-horizontal" method="POST" action="/registration">
 
     						<div class="form-group">
     							<label for="name" class="cols-sm-2 control-label">Username</label>
@@ -151,6 +153,11 @@
     				</div>
     			</div>
             </div>
+            {% endif %}
+
+            {% if 'username' in session: %}
+            <a href="/logout"> Logout </a>
+            {% endif %}
 
             </div>
 
@@ -184,6 +191,27 @@
         modalupus.style.display = "none";
     }
     //=========================
+
+    $("#form-login").submit(function(e) {
+
+        var url = "/login"; // the script where you handle the form input.
+
+        $.ajax({
+               type: "POST",
+               url: url,
+               data: { nickname: $("#form-login input")[0].value , password: $("#form-login input")[1].value, ajax: true },
+               success: function(data)
+               {
+                   if (data !== "Ok"){
+                       document.getElementById("loginerr").innerHTML = data ;
+                   } else {
+                       window.location.href = "/home";
+                   }
+               }
+             });
+            e.preventDefault();
+    });
+
 </script>
 </body>
 

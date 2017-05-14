@@ -24,7 +24,7 @@ def registration():
         status = request.form['status']
         now = datetime.now()
         if passw == cpassw:
-            post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)        
+            post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)
             if status == "Head":
                 post_pod=Team(name=nickname,joined=now,acc=post_entry)
             else:
@@ -41,8 +41,8 @@ def registration():
         #for i in session.query(Task):
         #   query.append((i.title, i.info, i.expected))
         #return redirect(url_for('index.html'))
-            
-        
+
+
         #return title_task
         #db.session.query(Task).append(title=title_task)
         #db.session.query(Task).append(info=info_task)
@@ -52,19 +52,35 @@ def registration():
         return render_template('registration.html')
         #return "Bad request"
 
-@app.route('/login', methods=(['GET', 'POST']))
+@app.route('/login', methods=(['POST']))
 def login():
-    login = request.form['login']
-    password = request.form['password']
+    if 'ajax' in request.form:
+        if 'nickname' in request.form and 'password' in request.form:
+            login = request.form['nickname']
+            password = request.form['password']
 
-    acc = db.session.query(Acc).filter_by(nickname=login).first()
-    if acc:
-        if acc.password == password:
-            return "everything okay"
-        else:
-            return "Wrong password"
-    else:
-        return "Account doesn`t exist"
+            acc = db.session.query(Acc).filter_by(nickname=login).first()
+            if acc:
+                if acc.password == password:
+                    session["username"] = login
+                    session["id"] = acc.id
+                    return "Ok"
+                else:
+                    return "Wrong password"
+            else:
+                return "Account doesn`t exist"
+    # else :
+    #     login = request.form['login']
+    #     password = request.form['password']
+    #
+    #     acc = db.session.query(Acc).filter_by(nickname=login).first()
+    #     if acc:
+    #         if acc.password == password:
+    #             return "everything okay"
+    #         else:
+    #             return "Wrong password"
+    #     else:
+    #         return "Account doesn`t exist"
 
 #GET, RABOTAET
 #@app.route('/create_task',methods=(['GET', 'POST']))
@@ -141,3 +157,9 @@ def create_project():
         mess = "Bad request"
         return render_template('create_project.html')
         #return "Bad request"
+
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    session.pop('id', None)
+    return redirect('/')
