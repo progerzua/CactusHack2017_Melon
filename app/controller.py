@@ -9,10 +9,14 @@ from app.models import Acc, Team, Project, User, Task, association_table
 from sqlalchemy.orm import sessionmaker
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort
 from app.forms import LoginForm
+from sqlalchemy.sql import text
+from sqlalchemy.orm import sessionmaker, scoped_session
+import json
 
 @app.route('/')
 def index():
     return render_template('landing.html')
+
 
 @app.route('/registration', methods=(['GET','POST']))
 def registration():
@@ -68,7 +72,14 @@ def login():
                 if acc.password == password:
                     session["username"] = login
                     session["id"] = acc.id
-                    return "Ok"
+                    session["status"] = acc.status
+                    if acc.status == "Head":
+                        #result = db.session.query(Team).filter_by(acc_id='1').all()
+                        session["company_name"] = "Melon"
+                        session["team_id"] = 2
+                        return "Head"
+                    else:
+                        return "Slave"
                 else:
                     return "Wrong password"
             else:
@@ -95,6 +106,7 @@ def create_task():
         mess = "Bad request"
         return render_template('create_task.html')
         #return "Bad request"
+
 @app.route('/create_project',methods=(['GET', 'POST']))
 def create_project():
     if request.method == 'POST':
@@ -102,7 +114,6 @@ def create_project():
         post_entry = Project(name=name_project)
         db.session.add(post_entry)
         db.session.commit()
-
         return name_project
 
     else:
@@ -114,4 +125,35 @@ def create_project():
 def logout():
     session.pop('username', None)
     session.pop('id', None)
+    session.pop('status', None)
     return redirect('/')
+
+@app.route('/hh_home')
+def hh_home():
+    if ('status' in session) and (session['status'] == 'Head'):
+        Session = scoped_session(sessionmaker(bind=db.engine))
+        s = Session()
+        result = s.execute('SELECT * FROM Projects WHERE team_id = :val', {'val': session["team_id"]})
+        return render_template('indexHR.html', company_name=session["company_name"], projects=result)
+    else:
+        return redirect('/')
+
+@app.route('/hh/project/<projectid>')
+def hh_project(projectid):
+    if ('status' in session) and (session['status'] == 'Head'):
+        Session = scoped_session(sessionmaker(bind=db.engine))
+        s = Session()
+        result = s.execute('SELECT * FROM Tasks WHERE project_id = :val', {'val': projectid})
+        return render_template('indexHR_one.html', company_name=session["company_name"], tasks=result)
+    else:
+        return redirect('/')
+
+@app.route('/test')
+def test():
+    Session = scoped_session(sessionmaker(bind=db.engine))
+    s = Session()
+    tmp = ""
+    result = s.execute("SELECT * FROM Users")
+    for i in result:
+        tmp = i
+    return str(tmp)
