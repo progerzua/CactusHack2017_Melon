@@ -4,6 +4,7 @@ Its shitty code. Don`t use it.
 
 from flask import render_template,session,redirect,url_for,escape,request,flash,abort
 from app import app, db
+from datetime import datetime
 from app.models import Acc, Team, Project, User, Task, association_table
 from sqlalchemy.orm import sessionmaker
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort
@@ -21,7 +22,6 @@ def registration():
         cpassw = request.form['cpass']
         email = request.form['email']
         status = request.form['status']
-        from datetime import datetime
         now = datetime.now()
         if passw == cpassw:
             post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)        
