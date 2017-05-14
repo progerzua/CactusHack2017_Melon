@@ -113,7 +113,7 @@
   padding: 15px 18px;
 }
 .side-menu .brand-name-wrapper {
-  min-height: 50px;
+  min-height: 100px;
 }
 .side-menu .brand-name-wrapper .navbar-brand {
   display: block;
@@ -155,7 +155,7 @@
 }
 /* Main body section */
 .side-body {
-  margin-left: 310px;
+  margin-left: 300px;
 }
 /* small screen */
 @media (max-width: 768px) {
@@ -168,6 +168,9 @@
   }
   .side-menu .brand-name-wrapper .navbar-brand {
     display: inline-block;
+  }
+  .side-menu .brand-name-wrapper {
+    min-height: 100px; 
   }
   /* Slide in animation */
   @-moz-keyframes slidein {
@@ -352,11 +355,19 @@
 .project {
     display: inline-block;
     background: #f8f8f8;
-    width: 350px;
+    width: 300px;
     height: 400px;
-    
+    margin-left: 10px;
 }
+
 .main-login {
     max-width: 250px;
     margin-left: 40px;
 }
+div.project {
+  text-align: center;
+}
+div.project form {
+  padding: 0; 
+}
+
