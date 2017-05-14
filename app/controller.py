@@ -17,7 +17,16 @@ def index():
 @app.route('/registration', methods=(['GET','POST']))
 def registration():
     if request.method == 'POST':
-        nickname = request.form['name']
+        if request.form['name'] == db.session.query(Acc).filter_by(nickname=request.form['name']).first().nickname:
+            return "Nickname allready used" 
+        else:
+            nickname=request.form['name']
+            
+        if request.form['email'] == db.session.query(Acc).filter_by(email=request.form['email']).first().email:
+            return "Email allready used" 
+        else:
+            email=request.form['email'] 
+            
         passw = request.form['pass']
         cpassw = request.form['cpass']
         email = request.form['email']
