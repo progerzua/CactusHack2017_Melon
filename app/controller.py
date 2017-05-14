@@ -21,8 +21,10 @@ def registration():
         cpassw = request.form['cpass']
         email = request.form['email']
         status = request.form['status']
+        from datetime import datetime
+        now = datetime.now()
         if passw == cpassw:
-            post_entry = Acc(nickname=nickname,password=passw,email=email,status=status)
+            post_entry = Acc(nickname=nickname,password=passw,email=email,status=status,joined=now)        
             db.session.add(post_entry)
             db.session.commit()
         #db.session.query(Task).append(title=title_task)
