@@ -11,6 +11,7 @@ from flask import Flask,session, request, flash, url_for, redirect, render_templ
 from app.forms import LoginForm
 from sqlalchemy.sql import text
 from sqlalchemy.orm import sessionmaker, scoped_session
+import json
 
 @app.route('/')
 def index():
@@ -59,6 +60,7 @@ def login():
                     if acc.status == "Head":
                         #result = db.session.query(Team).filter_by(acc_id='1').all()
                         session["company_name"] = "Melon"
+                        session["team_id"] = 2
                         return "Head"
                     else:
                         return "Slave"
@@ -113,7 +115,20 @@ def logout():
 @app.route('/hh_home')
 def hh_home():
     if ('status' in session) and (session['status'] == 'Head'):
-        return render_template('indexHR.html', company_name=session["company_name"])
+        Session = scoped_session(sessionmaker(bind=db.engine))
+        s = Session()
+        result = s.execute('SELECT * FROM Projects WHERE team_id = :val', {'val': session["team_id"]})
+        return render_template('indexHR.html', company_name=session["company_name"], projects=result)
+    else:
+        return redirect('/')
+
+@app.route('/hh/project/<projectid>')
+def hh_project(projectid):
+    if ('status' in session) and (session['status'] == 'Head'):
+        Session = scoped_session(sessionmaker(bind=db.engine))
+        s = Session()
+        result = s.execute('SELECT * FROM Tasks WHERE project_id = :val', {'val': projectid})
+        return render_template('indexHR_one.html', company_name=session["company_name"], tasks=result)
     else:
         return redirect('/')
 
